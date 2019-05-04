@@ -1,0 +1,156 @@
+<html>
+
+<head>
+
+  <link rel="stylesheet" href="../static/bootstrap.min.css" th:href="@{/bootstrap.min.css}" >
+  <script th:src="@{/jquery.min.js}"></script>
+  <script th:src="@{/bootstrap.min.js}"></script>
+  
+  <script>
+	function postar(){	
+	}
+  </script>
+
+</head>
+
+
+<body>
+
+<!-- <div class="container"> -->
+<!--   <h2>Panel Heading</h2> -->
+<!--   <div class="panel panel-default"> -->
+<!--     <div class="panel-heading">Panel Heading</div> -->
+<!--     <div class="panel-body">Panel Content</div> -->
+<!--   </div> -->
+<!-- </div> -->
+
+	<div class="container">
+
+		<div id="loginbox" style="margin-top: 50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+		
+			<div class="panel panel-info">
+			
+				<div class="panel-heading">
+					<div class="panel-title">Teste de Credenciais de Acesso</div>
+					<div style="float: right; font-size: 80%; position: relative; top: -10px">						
+						<a href="#"></a>
+					</div>
+				</div>
+
+				<div style="padding-top: 30px" class="panel-body">
+
+					<div style="display: none" id="login-alert" class="alert alert-danger col-sm-12"></div>
+
+					<form id="loginform" class="form-horizontal" role="form" action="#" th:action="@{/validarTokens}" th:object="${token}" method="post" >
+					
+<!-- --------------------------------DESENVOLVIMENTO------------------------------------------------------------------ -->					
+
+						<div style="margin-bottom: 25px" class="input-group">
+							<input id="iddev"    type="text" class="form-control" name="idhom"    placeholder="Cliente Id de DEV" th:field="*{iddev}" />
+							<input id="tokendev" type="text" class="form-control" name="tokenhom" placeholder="Token de DEV"      th:field="*{tokendev}" />						
+						</div>
+						
+<!-- 						alert alert-error collapse -->
+<!-- 					   <span th:text="*{devAlert}" th:remove="tag" >dev alert goes here</span> -->
+
+						<div class="alert alert-success" role="alert" th:classappend="*{#arrays.isEmpty(devAlertsSucessos)} ? collapse : anything"  >
+							<ul th:each="a : *{devAlertsSucessos}">
+							    <li th:text="${a}"></li>
+							</ul>
+						</div>
+						
+						<div class="alert alert-info" role="alert" th:classappend="*{#arrays.isEmpty(devAlertsInfos)} ? collapse : anything"  >
+							<ul th:each="a : *{devAlertsInfos}">
+							    <li th:text="${a}"></li>
+							</ul>
+						</div>						
+
+						<div class="alert alert-danger" role="alert" th:classappend="*{#arrays.isEmpty(devAlertsErros)} ? collapse : anything" >
+							<ul th:each="a : *{devAlertsErros}">
+							    <li th:text="${a}"></li>
+							</ul>
+						</div>
+						
+<!-- --------------------------------HOMOLOGACAO------------------------------------------------------------------								 -->
+
+						<div style="margin-bottom: 25px" class="input-group">
+							<input id="idhom"    type="text" class="form-control" name="idhom"    placeholder="Cliente Id de HOM" th:field="*{idhom}" />
+							<input id="tokenhom" type="text" class="form-control" name="tokenhom" placeholder="Token de HOM"      th:field="*{tokenHom}" />
+						</div>
+						
+						<div class="alert alert-success" role="alert" th:classappend="*{#arrays.isEmpty(homAlertsSucessos)} ? collapse : anything"  >
+							<ul th:each="a : *{homAlertsSucessos}">
+							    <li th:text="${a}"></li>
+							</ul>
+						</div>
+						
+						<div class="alert alert-info" role="alert" th:classappend="*{#arrays.isEmpty(homAlertsInfos)} ? collapse : anything"  >
+							<ul th:each="a : *{homAlertsInfos}">
+							    <li th:text="${a}"></li>
+							</ul>
+						</div>						
+
+						<div class="alert alert-danger" role="alert" th:classappend="*{#arrays.isEmpty(homAlertsErros)} ? collapse : anything" >
+							<ul th:each="a : *{homAlertsErros}">
+							    <li th:text="${a}"></li>
+							</ul>
+						</div>						
+						
+<!-- --------------------------------PRODUCAO------------------------------------------------------------------								 -->						
+						
+						<div style="margin-bottom: 25px" class="input-group">
+							<input id="idprod"    type="text" class="form-control" name="idhom"    placeholder="Cliente Id de PROD" th:field="*{idprod}" />
+							<input id="tokenprod" type="text" class="form-control" name="tokenhom" placeholder="Token de PROD"      th:field="*{tokenProd}" />
+						</div>						
+
+						<div class="alert alert-success" role="alert" th:classappend="*{#arrays.isEmpty(prodAlertsSucessos)} ? collapse : anything"  >
+							<ul th:each="a : *{prodAlertsSucessos}">
+							    <li th:text="${a}"></li>
+							</ul>
+						</div>
+						
+						<div class="alert alert-info" role="alert" th:classappend="*{#arrays.isEmpty(prodAlertsInfos)} ? collapse : anything"  >
+							<ul th:each="a : *{prodAlertsInfos}">
+							    <li th:text="${a}"></li>
+							</ul>
+						</div>						
+
+						<div class="alert alert-danger" role="alert" th:classappend="*{#arrays.isEmpty(prodAlertsErros)} ? collapse : anything" >
+							<ul th:each="a : *{prodAlertsErros}">
+							    <li th:text="${a}"></li>
+							</ul>
+						</div>
+
+<!-- --------------------------------END------------------------------------------------------------------								 -->
+
+						<div style="margin-top: 10px" class="form-group">
+							<!-- Button -->
+
+							<div class="col-sm-12 controls">
+								<a id="btn-login" href="#" class="btn btn-success" onclick="document.forms[0].submit();" >Verificar</a>
+							</div>
+						</div>
+
+
+						<div class="form-group">
+							<div class="col-md-12 control">
+								<div
+									style="border-top: 1px solid #888; padding-top: 15px; font-size: 85%;">									
+									Verifica se credenciais estao habilitadas para os ambientes
+								</div>
+							</div>
+						</div>
+					</form>
+
+
+
+				</div>
+			</div>
+		</div>
+		
+	</div>
+
+</body>
+
+
+</html>
